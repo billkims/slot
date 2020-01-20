@@ -51,8 +51,10 @@ window.addEventListener('load',  async () => {
     let accounts = await this.web3.eth.getAccounts();
     this.account = accounts[0];
 
+	document.getElementById("address").value = this.account;
+
 	console.log(accounts)
-	
+
     //this.lotteryContract = new this.web3.eth.Contract(lotteryABI, lotteryAddress);
     
   })
@@ -68,7 +70,7 @@ window.addEventListener('load',  async () => {
 
 */
 	
-	var contract = web3.eth.contract([{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"games","outputs":[{"name":"player","type":"address"},{"name":"win","type":"bool"},{"name":"betting_amount","type":"uint256"},{"name":"game_result","type":"uint256"},{"name":"reward","type":"uint256"},{"name":"blockNumber","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"killcontract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":true,"stateMutability":"payable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"player","type":"address"},{"indexed":false,"name":"win","type":"bool"},{"indexed":false,"name":"amount","type":"uint256"},{"indexed":false,"name":"n1","type":"uint256"},{"indexed":false,"name":"n2","type":"uint256"},{"indexed":false,"name":"n3","type":"uint256"}],"name":"sendResult","type":"event"}]).at("0x31540e71c4163d3d36c85835f3ceb1f56ed1c323");	
+	var contract = web3.eth.contract([{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"games","outputs":[{"name":"player","type":"address"},{"name":"win","type":"bool"},{"name":"betting_amount","type":"uint256"},{"name":"game_result","type":"uint256"},{"name":"reward","type":"uint256"},{"name":"blockNumber","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"killcontract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"player","type":"address"},{"indexed":false,"name":"win","type":"bool"},{"indexed":false,"name":"amount","type":"uint256"},{"indexed":false,"name":"n1","type":"uint256"},{"indexed":false,"name":"n2","type":"uint256"},{"indexed":false,"name":"n3","type":"uint256"}],"name":"sendResult","type":"event"}]).at("0x83cefaa837c5f8674d0ce3f0dc7ace710177f061");	
 	
 	console.log(contract)
 	
@@ -95,8 +97,8 @@ window.addEventListener('load',  async () => {
         document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
 	}
 	function refreshBalance2(){
-		var address= document.getElementById('address2').value;
-        document.getElementById('balance2').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
+		var address2= document.getElementById('address2').value;
+        document.getElementById('balance2').innerText = web3.fromWei(web3.eth.getBalance(address2).toNumber(),"ether") + "ETHER";
 	}	
 	function spin()
         {
@@ -150,7 +152,7 @@ window.addEventListener('load',  async () => {
 
 <p class="login">
     ID:
-	<input type="text" id="address" value="0x31540e71c4163d3d36c85835f3ceb1f56ed1c323">
+	<input type="text" id="address" value=${this.account}>
 	Pass:
 	<input type="password" id="pass" value="1234">
     <input type="button" value="잔고확인" onClick="refreshBalance()">
