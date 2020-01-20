@@ -5,29 +5,32 @@
 
 <script type="text/javascript" src="./lib/bignumber.min.js"></script>
 <!--
+
 <script type="text/javascript" src="./lib/web3-light.js"></script>
 
 <script src="node_modules/web3/dist/web3.min.js"></script>
---> 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+--> 
+
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
 
 <script type="text/javascript">
-
-	// https://medium.com/@yangnana11/interacting-with-a-smart-contract-through-web3-js-tutorial-56a7ff2ff153
-
-	if (typeof web3 !== 'undefined') {
-		web3 = new Web3(web3.currentProvider);
-	} else {
-		// set the provider you want from Web3.providers
-		web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-	}
-
-	web3.eth.defaultAccount = web3.eth.accounts[0];
 	
-	console.log(web3.eth.defaultAccount)
+	window.addEventListener('load', () => {
+		if (typeof web3 !== 'undefined') {
+			web3 = new Web3(web3.currentProvider);
+		} else {
+			console.log('No web3? You should consider trying MetaMask!');
+			web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+		}
+	});
 
-    // var Web3 = require('web3');
+
+	console.log(web3)
+    
+	// var Web3 = require('web3');
     // var web3 = new Web3();
     // web3.setProvider(new web3.providers.HttpProvider("http://163.152.161.111:8545"));
 	
