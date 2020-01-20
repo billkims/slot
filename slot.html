@@ -17,22 +17,44 @@
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
 
 <script type="text/javascript">
-	
-// https://medium.com/metamask/no-longer-injecting-web3-js-4a899ad6e59e
-// https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider
-if (typeof window.ethereum !== 'undefined') {
-	// Ethereum user detected. You can now use the provider.
-	const provider = window['ethereum']
-}
-console.log(provider)
-try {
-  const accounts = await ethereum.enable()
-} catch (error) {
-  // Handle error. Likely the user rejected the login
-  console.error(error)
-}
-console.log(provider)
 
+//  initWeb3 = async () => {
+window.addEventListener('load',  async () => {	  
+	
+	console.log("start")
+
+    if (window.ethereum) {
+      console.log('Recent mode')
+      this.web3 = new Web3(window.ethereum);
+      try {
+          // Request account access if needed
+          await window.ethereum.enable();
+          // Acccounts now exposed
+          // this.web3.eth.sendTransaction({/* ... */});
+      } catch (error) {
+          // User denied account access...
+          console.log(`User denied account access error : ${error}`)
+      }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+      console.log('legacy mode')
+      this.web3 = new Web3(Web3.currentProvider);
+      // Acccounts always exposed
+      // web3.eth.sendTransaction({/* ... */});
+    }
+    // Non-dapp browsers...
+    else {
+      console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+
+    let accounts = await this.web3.eth.getAccounts();
+    this.account = accounts[0];
+
+    this.lotteryContract = new this.web3.eth.Contract(lotteryABI, lotteryAddress);
+    
+  })
+/*
 	window.addEventListener('load', () => {
 		if (typeof web3 !== 'undefined') {
 			web3 = new Web3(web3.currentProvider);
@@ -42,6 +64,7 @@ console.log(provider)
 		}
 	});
 
+*/
 
 	console.log(web3)
     
