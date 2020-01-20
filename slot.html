@@ -4,10 +4,14 @@
 <meta charset="UTF-8">
 
 <script type="text/javascript" src="./lib/bignumber.min.js"></script>
-<script type="text/javascript" src="./lib/web3-light.js"></script>
 <!--
+<script type="text/javascript" src="./lib/web3-light.js"></script>
+
 <script src="node_modules/web3/dist/web3.min.js"></script>
--->   
+--> 
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
 <script type="text/javascript">
 
 	// https://medium.com/@yangnana11/interacting-with-a-smart-contract-through-web3-js-tutorial-56a7ff2ff153
@@ -51,11 +55,11 @@
         }
 	function refreshBalance(){
 		var address= document.getElementById('address').value;
-        document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
+        document.getElementById('balance').innerText = await web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
 	}
 	function refreshBalance2(){
 		var address= document.getElementById('address2').value;
-        document.getElementById('balance2').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
+        document.getElementById('balance2').innerText = await web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
 	}	
 	function spin()
         {
@@ -117,7 +121,7 @@
 
 <p class="login">
 	<input type="text" id="address2" value="0x31540e71c4163d3d36c85835f3ceb1f56ed1c323">
-	<input type="button" value="잔고확인" onClick="refreshBalance()">
+	<input type="button" value="잔고확인" onClick="refreshBalance2()">
 </p>
 
 <div id="machine">
@@ -154,6 +158,7 @@
 
 
 <p id="balance">0 ETHER</p>
+<p id="balance2">0 ETHER</p>
 
 <p id="messages"></p>
 </body>
