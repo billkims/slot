@@ -51,7 +51,9 @@ window.addEventListener('load',  async () => {
     let accounts = await this.web3.eth.getAccounts();
     this.account = accounts[0];
 
-    this.lotteryContract = new this.web3.eth.Contract(lotteryABI, lotteryAddress);
+	console.log(accounts)
+	
+    //this.lotteryContract = new this.web3.eth.Contract(lotteryABI, lotteryAddress);
     
   })
 /*
@@ -65,12 +67,6 @@ window.addEventListener('load',  async () => {
 	});
 
 */
-
-	console.log(web3)
-    
-	// var Web3 = require('web3');
-    // var web3 = new Web3();
-    // web3.setProvider(new web3.providers.HttpProvider("http://163.152.161.111:8545"));
 	
 	var contract = web3.eth.contract([{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"games","outputs":[{"name":"player","type":"address"},{"name":"win","type":"bool"},{"name":"betting_amount","type":"uint256"},{"name":"game_result","type":"uint256"},{"name":"reward","type":"uint256"},{"name":"blockNumber","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"killcontract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":true,"stateMutability":"payable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"player","type":"address"},{"indexed":false,"name":"win","type":"bool"},{"indexed":false,"name":"amount","type":"uint256"},{"indexed":false,"name":"n1","type":"uint256"},{"indexed":false,"name":"n2","type":"uint256"},{"indexed":false,"name":"n3","type":"uint256"}],"name":"sendResult","type":"event"}]).at("0x31540e71c4163d3d36c85835f3ceb1f56ed1c323");	
 	
