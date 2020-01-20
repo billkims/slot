@@ -18,6 +18,21 @@
 
 <script type="text/javascript">
 	
+// https://medium.com/metamask/no-longer-injecting-web3-js-4a899ad6e59e
+// https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider
+if (typeof window.ethereum !== 'undefined') {
+	// Ethereum user detected. You can now use the provider.
+	const provider = window['ethereum']
+}
+console.log(provider)
+try {
+  const accounts = await ethereum.enable()
+} catch (error) {
+  // Handle error. Likely the user rejected the login
+  console.error(error)
+}
+console.log(provider)
+
 	window.addEventListener('load', () => {
 		if (typeof web3 !== 'undefined') {
 			web3 = new Web3(web3.currentProvider);
