@@ -55,11 +55,11 @@
         }
 	function refreshBalance(){
 		var address= document.getElementById('address').value;
-        document.getElementById('balance').innerText = await web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
+        document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
 	}
 	function refreshBalance2(){
 		var address= document.getElementById('address2').value;
-        document.getElementById('balance2').innerText = await web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
+        document.getElementById('balance2').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(),"ether") + "ETHER";
 	}	
 	function spin()
         {
