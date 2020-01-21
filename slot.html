@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 
 <script type="text/javascript" src="./lib/bignumber.min.js"></script>
-
+<script type="text/javascript" src="./web3.min.js"></script>
+<!--
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
-
+-->
 
 <script type="text/javascript">
 
@@ -46,14 +47,14 @@ window.addEventListener('load',  async () => {
 	document.getElementById("address").value = this.account;
 
  
-	var contractAddr = "0x83cefaa837c5f8674d0ce3f0dc7ace710177f061";
+	var contractAddr = "0x838e100383fe88d553F938A44EF6478370d702DF";
 	
 	document.getElementById("address2").value = contractAddr;
 
 	//var contract = web3.eth.contract([{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"games","outputs":[{"name":"player","type":"address"},{"name":"win","type":"bool"},{"name":"betting_amount","type":"uint256"},{"name":"game_result","type":"uint256"},{"name":"reward","type":"uint256"},{"name":"blockNumber","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"killcontract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"player","type":"address"},{"indexed":false,"name":"win","type":"bool"},{"indexed":false,"name":"amount","type":"uint256"},{"indexed":false,"name":"n1","type":"uint256"},{"indexed":false,"name":"n2","type":"uint256"},{"indexed":false,"name":"n3","type":"uint256"}],"name":"sendResult","type":"event"}]).at(contractAddr);	
 	
-	var etherollAbi = [{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"games","outputs":[{"name":"player","type":"address"},{"name":"win","type":"bool"},{"name":"betting_amount","type":"uint256"},{"name":"game_result","type":"uint256"},{"name":"reward","type":"uint256"},{"name":"blockNumber","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"killcontract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"player","type":"address"},{"indexed":false,"name":"win","type":"bool"},{"indexed":false,"name":"amount","type":"uint256"},{"indexed":false,"name":"n1","type":"uint256"},{"indexed":false,"name":"n2","type":"uint256"},{"indexed":false,"name":"n3","type":"uint256"}],"name":"sendResult","type":"event"}]
-	
+	var etherollAbi = [{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"games","outputs":[{"name":"player","type":"address"},{"name":"win","type":"bool"},{"name":"betting_amount","type":"uint256"},{"name":"game_result","type":"uint256"},{"name":"reward","type":"uint256"},{"name":"blockNumber","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"killcontract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"player","type":"address"},{"indexed":false,"name":"win","type":"bool"},{"indexed":false,"name":"amount","type":"uint256"},{"indexed":false,"name":"n1","type":"uint256"},{"indexed":false,"name":"n2","type":"uint256"},{"indexed":false,"name":"n3","type":"uint256"}],"name":"sendResult","type":"event"}];
+
 	this.contract = new web3.eth.Contract(etherollAbi, contractAddr);
 	
 	var games = await this.contract.games;
@@ -119,10 +120,10 @@ window.addEventListener('load',  async () => {
 		var address = document.getElementById('address').value;
 		var amount = web3.utils.toWei(document.getElementById('bet_amount').value,"ether");
 		console.log(address, amount)
-		this.contract.methods.bet().send({from:address, value:amount, gas:20000000,
+		this.contract.methods.bet().send({from:address, value:amount,
 		}).then(result => console.log(JSON.stringify(result)));
 	}
-
+/*
 	function spin()
         {
 			//var address = document.getElementById('address').value;
@@ -132,7 +133,7 @@ window.addEventListener('load',  async () => {
 			
 			// if(web3.personal.unlockAccount(address,document.getElementById('pass').value)){
 			if(this.account) {				
-				this.contract.bet({value:amount, gas:2000000}, (err,result) => {
+				this.contract.bet(({value:amount, gas:2000000}) (err,result) => {
 											if(!err){
 												message('결과를 기다리는 중입니다.');
 												}
@@ -142,7 +143,8 @@ window.addEventListener('load',  async () => {
 							);
 			};
 			message('wait... ');
-        }
+		}
+	*/
 </script>
 <style>
         body {
