@@ -120,8 +120,12 @@ window.addEventListener('load',  async () => {
 		var address = document.getElementById('address').value;
 		var amount = web3.utils.toWei(document.getElementById('bet_amount').value,"ether");
 		console.log(address, amount)
+		if (amount > 0){
 		this.contract.methods.bet().send({from:address, value:amount,
 		}).then(result => console.log(JSON.stringify(result)));
+		} else {
+			message('You need to set bet money');
+		}
 	}
 /*
 	function spin()
